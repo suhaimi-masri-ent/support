@@ -1,1 +1,145 @@
- 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Support Desk</title>
+    <meta
+      name="description"
+      content="Internal support portal for reporting technical issues and service requests."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand-block">
+        <span class="brand-mark">S</span>
+        <div>
+          <p class="eyebrow">Internal portal</p>
+          <h1>Support Desk</h1>
+        </div>
+      </div>
+      <a
+        class="ghost-button"
+        href="https://github.com/suhaimi-masri-ent/support/issues"
+        target="_blank"
+        rel="noreferrer"
+      >
+        View issues
+      </a>
+    </header>
+
+    <main class="page-layout">
+      <section class="hero card">
+        <div>
+          <p class="eyebrow">Operations</p>
+          <h2>Submit a support request</h2>
+          <p class="lede">
+            Report technical issues, access problems, billing concerns, or product requests using the GitHub issue tracker.
+          </p>
+        </div>
+        <div class="status-pills">
+          <span class="pill green">Live</span>
+          <span class="pill blue">GitHub Issues</span>
+          <span class="pill purple">Public portal</span>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <form id="support-form" class="card form-card">
+          <div class="section-header">
+            <p class="eyebrow">New ticket</p>
+            <h3>Request details</h3>
+          </div>
+
+          <div class="field-grid">
+            <label>
+              <span>Requester name</span>
+              <input type="text" name="requester" placeholder="Jane Smith" required />
+            </label>
+
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" placeholder="jane@company.com" required />
+            </label>
+
+            <label>
+              <span>Company</span>
+              <input type="text" name="company" placeholder="Northwind Co" />
+            </label>
+
+            <label>
+              <span>Category</span>
+              <select name="category" required>
+                <option value="">Select a category</option>
+                <option>Account access</option>
+                <option>Billing</option>
+                <option>Technical issue</option>
+                <option>Feature request</option>
+                <option>Other</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Priority</span>
+              <select name="priority" required>
+                <option value="">Select a priority</option>
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+                <option>Urgent</option>
+              </select>
+            </label>
+
+            <label class="full-width">
+              <span>Summary</span>
+              <input type="text" name="summary" placeholder="Password reset loop on admin portal" required />
+            </label>
+
+            <label class="full-width">
+              <span>Problem details</span>
+              <textarea name="details" rows="6" placeholder="Describe the issue, impact, and any steps to reproduce." required></textarea>
+            </label>
+          </div>
+
+          <div class="button-row">
+            <button type="submit" class="primary-button">Create support ticket</button>
+            <a
+              class="secondary-button"
+              href="https://github.com/suhaimi-masri-ent/support/issues/new?template=support-request.yml"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open issue form
+            </a>
+          </div>
+        </form>
+
+        <aside class="sidebar">
+          <div class="card mini-card">
+            <p class="eyebrow">Available</p>
+            <h3>Support channels</h3>
+            <ul>
+              <li>GitHub Issues for ticket tracking</li>
+              <li>Labels for priority and status</li>
+              <li>Comments for internal updates</li>
+            </ul>
+          </div>
+
+          <div class="card mini-card">
+            <p class="eyebrow">Workflow</p>
+            <h3>How it works</h3>
+            <ol>
+              <li>Submit a ticket request.</li>
+              <li>New issue is created in GitHub.</li>
+              <li>Support team responds in comments.</li>
+              <li>Close when resolved.</li>
+            </ol>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html> 
