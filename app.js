@@ -1,6 +1,13 @@
-const form = document.getElementById("support-form");
-const submitButton = document.getElementById("submit-button");
-const messageBox = document.getElementById("form-message");
+const form =
+  document.getElementById("support-form");
+
+const submitButton =
+  form
+    ? form.querySelector('button[type="submit"]')
+    : null;
+
+const messageBox =
+  document.getElementById("form-message");
 
 
 /*
@@ -21,14 +28,48 @@ function showMessage(
   supportId = ""
 ) {
 
-  messageBox.innerHTML = "";
+  /*
+   * If form-message does not exist in HTML,
+   * create it automatically.
+   */
+  let box =
+    document.getElementById("form-message");
+
+  if (!box && form) {
+
+    box =
+      document.createElement("div");
+
+    box.id =
+      "form-message";
+
+    box.className =
+      "form-message";
+
+    box.hidden =
+      true;
+
+    form.appendChild(box);
+  }
+
+
+  if (!box) {
+    return;
+  }
+
+
+  box.innerHTML = "";
+
 
   const messageText =
     document.createElement("div");
 
-  messageText.textContent = message;
+  messageText.textContent =
+    message;
 
-  messageBox.appendChild(messageText);
+  box.appendChild(
+    messageText
+  );
 
 
   /*
@@ -45,10 +86,9 @@ function showMessage(
     supportReference.textContent =
       `Support ID: ${supportId}`;
 
-    messageBox.appendChild(
+    box.appendChild(
       supportReference
     );
-
   }
 
 
@@ -60,14 +100,16 @@ function showMessage(
     const ticketLink =
       document.createElement("a");
 
-    ticketLink.href = ticketUrl;
+    ticketLink.href =
+      ticketUrl;
 
     ticketLink.textContent =
       issueNumber
         ? `View GitHub Ticket #${issueNumber}`
         : "View GitHub Ticket";
 
-    ticketLink.target = "_blank";
+    ticketLink.target =
+      "_blank";
 
     ticketLink.rel =
       "noopener noreferrer";
@@ -75,18 +117,17 @@ function showMessage(
     ticketLink.className =
       "view-ticket-button";
 
-    messageBox.appendChild(
+    box.appendChild(
       ticketLink
     );
-
   }
 
 
-  messageBox.className =
+  box.className =
     `form-message ${type}`;
 
-  messageBox.hidden = false;
-
+  box.hidden =
+    false;
 }
 
 
@@ -95,20 +136,34 @@ function showMessage(
  */
 function clearMessage() {
 
-  messageBox.hidden = true;
+  const box =
+    document.getElementById("form-message");
 
-  messageBox.innerHTML = "";
+  if (!box) {
+    return;
+  }
 
-  messageBox.className =
+  box.hidden =
+    true;
+
+  box.innerHTML =
+    "";
+
+  box.className =
     "form-message";
-
 }
 
 
 /*
  * Submit button loading state
  */
-function setLoading(loading) {
+function setLoading(
+  loading
+) {
+
+  if (!submitButton) {
+    return;
+  }
 
   submitButton.disabled =
     loading;
@@ -122,10 +177,9 @@ function setLoading(loading) {
   } else {
 
     submitButton.textContent =
-      "Submit support request";
+      "Submit request";
 
   }
-
 }
 
 
@@ -140,6 +194,7 @@ if (form) {
 
       event.preventDefault();
 
+
       clearMessage();
 
 
@@ -151,7 +206,6 @@ if (form) {
         form.reportValidity();
 
         return;
-
       }
 
 
@@ -162,6 +216,12 @@ if (form) {
         new FormData(form);
 
 
+      /*
+       * Build API payload
+       *
+       * IMPORTANT:
+       * Phone is now included.
+       */
       const payload = {
 
         requester:
@@ -172,6 +232,11 @@ if (form) {
         email:
           String(
             formData.get("email") || ""
+          ).trim(),
+
+        phone:
+          String(
+            formData.get("phone") || ""
           ).trim(),
 
         company:
@@ -198,7 +263,6 @@ if (form) {
           String(
             formData.get("details") || ""
           ).trim()
-
       };
 
 
@@ -221,11 +285,16 @@ if (form) {
 
               headers: {
                 "Content-Type":
+                  "application/json",
+
+                "Accept":
                   "application/json"
               },
 
               body:
-                JSON.stringify(payload)
+                JSON.stringify(
+                  payload
+                )
             }
           );
 
@@ -236,7 +305,9 @@ if (form) {
         const result =
           await response
             .json()
-            .catch(() => ({}));
+            .catch(
+              () => ({})
+            );
 
 
         /*
@@ -248,23 +319,26 @@ if (form) {
             result.message ||
             "Unable to submit the support request."
           );
-
         }
 
 
         /*
          * Successful submission
-         *
-         * IMPORTANT:
-         * Support ID is now displayed separately
-         * from GitHub Issue number.
          */
         showMessage(
+
           "Support request submitted successfully.",
+
           "success",
-          result.issueUrl || "",
-          result.issueNumber || "",
-          result.supportId || ""
+
+          result.issueUrl ||
+            "",
+
+          result.issueNumber ||
+            "",
+
+          result.supportId ||
+            ""
         );
 
 
@@ -283,8 +357,10 @@ if (form) {
 
 
         showMessage(
+
           error.message ||
           "Something went wrong. Please try again.",
+
           "error"
         );
 
@@ -295,10 +371,8 @@ if (form) {
          * Stop loading
          */
         setLoading(false);
-
       }
 
     }
   );
-
 }
