@@ -1,1 +1,74 @@
- 
+ name: Support request
+description: Submit a support ticket to the internal support team.
+title: "[Support] "
+labels:
+  - support
+
+body:
+  - type: input
+    id: requester
+    attributes:
+      label: Requester name
+      description: Who is contacting support?
+      placeholder: Jane Smith
+    validations:
+      required: true
+
+  - type: input
+    id: email
+    attributes:
+      label: Email address
+      description: Provide the best email to contact the requester.
+      placeholder: jane@company.com
+    validations:
+      required: true
+
+  - type: input
+    id: company
+    attributes:
+      label: Company or team
+      description: Optional, but helpful for triage.
+      placeholder: Northwind Co
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Account access
+        - Billing
+        - Technical issue
+        - Feature request
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - Low
+        - Medium
+        - High
+        - Urgent
+    validations:
+      required: true
+
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: Short title for the issue.
+      placeholder: Password reset loop in the admin portal
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Problem details
+      description: Describe the issue, steps to reproduce, and impact.
+      placeholder: Please share relevant context, screenshots, error messages, or timing details.
+    validations:
+      required: true
