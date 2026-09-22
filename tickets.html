@@ -3,32 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Support Desk — Tiket</title>
+  <title>Support Desk | Semak Tiket</title>
+  <meta name="description" content="Semak status tiket sokongan anda." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand-block"><span class="brand-mark">S</span><div><p class="eyebrow">Support portal</p><h1>Support Desk</h1></div></div>
-    <a class="ghost-button" href="index.html">Create ticket</a>
-  </header>
-  <main class="page-layout">
-    <section class="hero card">
-      <div><p class="eyebrow">Ticket portal</p><h2>Semak status tiket</h2><p class="lede">Masukkan email dan nombor telefon yang digunakan semasa menghantar tiket. Engineer boleh menggunakan akses dalaman untuk melihat semua tiket.</p></div>
+  <header class="topbar"><a class="brand-block" href="index.html" aria-label="Support Desk home"><span class="brand-mark">S</span><span><span class="eyebrow">Support portal</span><strong>Support Desk</strong></span></a><a class="button button-secondary" href="index.html">+ Tiket baharu</a></header>
+  <main class="page-shell">
+    <section class="hero-card compact-hero"><div><span class="eyebrow">Ticket portal</span><h1>Semak status tiket</h1><p>Masukkan email dan nombor telefon yang digunakan ketika tiket dihantar.</p></div><div class="secure-note"><span class="secure-icon">▣</span><div><strong>Akses terhad</strong><small>Hanya tiket yang sepadan dipaparkan</small></div></div></section>
+    <section class="lookup-layout">
+      <form id="lookup-form" class="card lookup-card" novalidate><div class="section-heading"><span class="eyebrow">Customer view</span><h2>Find your tickets</h2><p>Kedua-dua maklumat diperlukan untuk melindungi privasi anda.</p></div><div id="lookup-message" class="form-message" role="alert" hidden></div><div class="form-grid"><label><span>Email *</span><input type="email" name="email" autocomplete="email" required placeholder="nama@syarikat.com" /></label><label><span>Nombor telefon *</span><input type="tel" name="phone" autocomplete="tel" required placeholder="012-3456789" /></label></div><button class="button button-primary" type="submit">Cari tiket <span>→</span></button></form>
+      <div class="card engineer-card"><div class="engineer-heading"><span class="lock-icon">⌘</span><div><span class="eyebrow">Team access</span><h2>Engineer view</h2></div></div><p>Akses dalaman untuk melihat semua tiket. Key ini tidak disimpan dalam browser.</p><form id="engineer-form"><label><span>Engineer access key</span><input type="password" name="engineerKey" autocomplete="off" required placeholder="Masukkan access key" /></label><button class="button button-dark" type="submit">Lihat semua tiket</button></form></div>
     </section>
-    <section class="content-grid">
-      <form id="lookup-form" class="card form-card" novalidate>
-        <div class="section-header"><p class="eyebrow">Customer access</p><h3>View your tickets</h3></div>
-        <div id="lookup-message" class="form-message" role="alert" hidden></div>
-        <div class="field-grid">
-          <label><span>Email *</span><input type="email" name="email" autocomplete="email" required placeholder="jane@company.com" /></label>
-          <label><span>Phone number *</span><input type="tel" name="phone" autocomplete="tel" required placeholder="+60123456789" /></label>
-        </div>
-        <div class="button-row"><button class="primary-button" id="lookup-button" type="submit">Find my tickets</button></div>
-        <p class="privacy-note">Akses customer hanya memulangkan tiket yang sepadan dengan kedua-dua email dan nombor telefon.</p>
-      </form>
-      <aside class="card mini-card"><p class="eyebrow">Engineer access</p><h3>Internal ticket view</h3><p class="lede">Engineer boleh masukkan access key untuk melihat semua tiket tanpa membuka GitHub Issues kepada customer.</p><form id="engineer-form"><label><span>Engineer access key</span><input type="password" name="engineerKey" required /></label><div class="button-row"><button class="secondary-button" type="submit">View all tickets</button></div></form></aside>
-    </section>
-    <section id="results" class="ticket-results" aria-live="polite"></section>
+    <section id="results" class="results" aria-live="polite"></section>
   </main>
   <script src="tickets.js"></script>
 </body>
