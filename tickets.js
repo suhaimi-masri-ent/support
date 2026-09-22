@@ -1,4 +1,5 @@
-const API_URL = "https://suhaimi-support-api.bitsuhami.workers.dev/";
+const API_URL =
+  "https://suhaimi-support-api.bitsuhami.workers.dev/";
 
 const lookupForm = document.getElementById("lookup-form");
 const engineerForm = document.getElementById("engineer-form");
@@ -6,7 +7,7 @@ const results = document.getElementById("results");
 const message = document.getElementById("lookup-message");
 
 function escapeHtml(value) {
-  return String(value ?? "").replace(/[&<>"'`]/g, (char) => {
+  return String(value ?? "").replace(/[&<>"'`]/g, (character) => {
     const characters = {
       "&": "&amp;",
       "<": "&lt;",
@@ -16,7 +17,7 @@ function escapeHtml(value) {
       "`": "&#96;"
     };
 
-    return characters[char];
+    return characters[character];
   });
 }
 
@@ -52,9 +53,9 @@ function clearMessage() {
     return;
   }
 
-  message.hidden = true;
   message.textContent = "";
   message.className = "form-message";
+  message.hidden = true;
 }
 
 function renderTickets(tickets, engineer = false) {
@@ -62,11 +63,13 @@ function renderTickets(tickets, engineer = false) {
     return;
   }
 
-  if (!tickets.length) {
+  if (!Array.isArray(tickets) || tickets.length === 0) {
     results.innerHTML = `
       <div class="card empty-state">
         <div class="empty-icon">⌕</div>
+
         <h2>No tickets found</h2>
+
         <p>
           Make sure the details match the information used
           when the ticket was submitted.
@@ -77,168 +80,172 @@ function renderTickets(tickets, engineer = false) {
     return;
   }
 
-  const ticketCards = tickets
-    .map((ticket) => {
-      const supportId =
-        ticket.support_id ||
-        ticket.supportId ||
-        "—";
+  const ticketCards = tickets.map((ticket) => {
+    const supportId =
+      ticket.support_id ||
+      ticket.supportId ||
+      "—";
 
-      const issueNumber =
-        ticket.issue_number ??
-        ticket.number ??
-        "";
+    const issueNumber =
+      ticket.issue_number ??
+      ticket.issueNumber ??
+      ticket.number ??
+      "";
 
-      const issueUrl =
-        ticket.issue_url ||
-        ticket.issueUrl ||
-        "";
+    const issueUrl =
+      ticket.issue_url ||
+      ticket.issueUrl ||
+      "";
 
-      const title =
-        ticket.title ||
-        ticket.summary ||
-        "Support request";
+    const title =
+      ticket.title ||
+      ticket.summary ||
+      "Support request";
 
-      const status =
-        ticket.status ||
-        ticket.state ||
-        "Open";
+    const status =
+      ticket.status ||
+      ticket.state ||
+      "Open";
 
-      const category =
-        ticket.category ||
-        "—";
+    const category =
+      ticket.category ||
+      "—";
 
-      const priority =
-        ticket.priority ||
-        "—";
+    const priority =
+      ticket.priority ||
+      "—";
 
-      const solution =
-        ticket.solution ||
-        ticket.details ||
-        "Our support team is reviewing this ticket.";
+    const solution =
+      ticket.solution ||
+      ticket.details ||
+      "Our support team is reviewing this ticket.";
 
-      const engineerDetails = engineer
-        ? `
-          <span>
-            <b>Customer</b>
-            ${escapeHtml(ticket.requester || "—")}
-          </span>
+    const engineerDetails = engineer
+      ? `
+        <span>
+          <b>Customer</b>
+          ${escapeHtml(ticket.requester || "—")}
+        </span>
 
-          <span>
-            <b>Email</b>
-            ${escapeHtml(ticket.email || "—")}
-          </span>
+        <span>
+          <b>Email</b>
+          ${escapeHtml(ticket.email || "—")}
+        </span>
 
-          <span>
-            <b>Phone</b>
-            ${escapeHtml(ticket.phone || "—")}
-          </span>
+        <span>
+          <b>Phone</b>
+          ${escapeHtml(ticket.phone || "—")}
+        </span>
 
-          <span>
-            <b>Company</b>
-            ${escapeHtml(ticket.company || "—")}
-          </span>
-        `
-        : "";
+        <span>
+          <b>Company</b>
+          ${escapeHtml(ticket.company || "—")}
+        </span>
+      `
+      : "";
 
-      const githubTicketButton = issueUrl
-        ? `
-          <div class="ticket-actions">
-            <a
-              href="${escapeHtml(issueUrl)}"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="button button-secondary"
-            >
-              View GitHub ticket →
-            </a>
-          </div>
-        `
-        : "";
+    const githubTicketButton = issueUrl
+      ? `
+        <div class="ticket-actions">
+          <a
+            href="${escapeHtml(issueUrl)}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button button-secondary"
+          >
+            View GitHub ticket →
+          </a>
+        </div>
+      `
+      : "";
 
-      return `
-        <article class="card ticket-card">
-          <div class="ticket-top">
-            <div>
-              <div class="ticket-reference">
-                <span class="ticket-number">
-                  ${escapeHtml(supportId)}
-                </span>
+    return `
+      <article class="card ticket-card">
+        <div class="ticket-top">
+          <div>
+            <div class="ticket-reference">
+              <span class="ticket-number">
+                ${escapeHtml(supportId)}
+              </span>
 
-                ${
-                  issueNumber
-                    ? `
-                      <span class="github-number">
-                        GitHub #${escapeHtml(issueNumber)}
-                      </span>
-                    `
-                    : ""
-                }
-              </div>
-
-              <h3>
-                ${escapeHtml(title)}
-              </h3>
+              ${
+                issueNumber
+                  ? `
+                    <span class="github-number">
+                      GitHub #${escapeHtml(issueNumber)}
+                    </span>
+                  `
+                  : ""
+              }
             </div>
 
-            <span class="status ${escapeHtml(
-              String(status).toLowerCase()
-            )}">
-              ${escapeHtml(status)}
-            </span>
+            <h3>
+              ${escapeHtml(title)}
+            </h3>
           </div>
 
-          <div class="ticket-meta">
-            <span>
-              <b>Category</b>
-              ${escapeHtml(category)}
-            </span>
+          <span class="status ${escapeHtml(
+            String(status).toLowerCase()
+          )}">
+            ${escapeHtml(status)}
+          </span>
+        </div>
 
-            <span>
-              <b>Priority</b>
-              ${escapeHtml(priority)}
-            </span>
+        <div class="ticket-meta">
+          <span>
+            <b>Category</b>
+            ${escapeHtml(category)}
+          </span>
 
-            <span>
-              <b>Created</b>
-              ${formatDate(ticket.created_at)}
-            </span>
+          <span>
+            <b>Priority</b>
+            ${escapeHtml(priority)}
+          </span>
 
-            ${
-              ticket.updated_at
-                ? `
-                  <span>
-                    <b>Updated</b>
-                    ${formatDate(ticket.updated_at)}
-                  </span>
-                `
-                : ""
-            }
+          <span>
+            <b>Created</b>
+            ${formatDate(ticket.created_at || ticket.createdAt)}
+          </span>
 
-            ${engineerDetails}
-          </div>
+          ${
+            ticket.updated_at || ticket.updatedAt
+              ? `
+                <span>
+                  <b>Updated</b>
+                  ${formatDate(
+                    ticket.updated_at || ticket.updatedAt
+                  )}
+                </span>
+              `
+              : ""
+          }
 
-          <div class="solution-box">
-            <span class="solution-label">
-              ${engineer ? "Ticket details" : "Support information"}
-            </span>
+          ${engineerDetails}
+        </div>
 
-            <p>
-              ${escapeHtml(solution)}
-            </p>
-          </div>
+        <div class="solution-box">
+          <span class="solution-label">
+            ${engineer ? "Ticket details" : "Support information"}
+          </span>
 
-          ${githubTicketButton}
-        </article>
-      `;
-    })
-    .join("");
+          <p>
+            ${escapeHtml(solution)}
+          </p>
+        </div>
+
+        ${githubTicketButton}
+      </article>
+    `;
+  }).join("");
 
   results.innerHTML = `
     <div class="results-heading">
       <div>
         <span class="eyebrow">Ticket results</span>
-        <h2>${engineer ? "All support tickets" : "Your tickets"}</h2>
+
+        <h2>
+          ${engineer ? "All support tickets" : "Your tickets"}
+        </h2>
       </div>
 
       <span class="result-count">
@@ -311,15 +318,21 @@ if (lookupForm) {
 
       clearMessage();
 
-      results.innerHTML = `
-        <div class="card loading-state">
-          Searching for tickets…
-        </div>
-      `;
+      if (results) {
+        results.innerHTML = `
+          <div class="card loading-state">
+            Searching for tickets…
+          </div>
+        `;
+      }
 
       if (!lookupForm.checkValidity()) {
         lookupForm.reportValidity();
-        results.innerHTML = "";
+
+        if (results) {
+          results.innerHTML = "";
+        }
+
         return;
       }
 
@@ -349,7 +362,9 @@ if (lookupForm) {
           error
         );
 
-        results.innerHTML = "";
+        if (results) {
+          results.innerHTML = "";
+        }
 
         showMessage(
           error.message ||
@@ -369,15 +384,21 @@ if (engineerForm) {
 
       clearMessage();
 
-      results.innerHTML = `
-        <div class="card loading-state">
-          Loading all tickets…
-        </div>
-      `;
+      if (results) {
+        results.innerHTML = `
+          <div class="card loading-state">
+            Loading all tickets…
+          </div>
+        `;
+      }
 
       if (!engineerForm.checkValidity()) {
         engineerForm.reportValidity();
-        results.innerHTML = "";
+
+        if (results) {
+          results.innerHTML = "";
+        }
+
         return;
       }
 
@@ -385,7 +406,7 @@ if (engineerForm) {
 
       const engineerKey = String(
         formData.get("engineerKey") || ""
-      );
+      ).trim();
 
       try {
         const data = await lookupEngineer(
@@ -402,7 +423,9 @@ if (engineerForm) {
           error
         );
 
-        results.innerHTML = "";
+        if (results) {
+          results.innerHTML = "";
+        }
 
         showMessage(
           error.message ||
