@@ -1,55 +1,113 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Support Desk | Hantar Tiket</title>
-  <meta name="description" content="Hantar permintaan sokongan teknikal." />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support Desk - New Ticket</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="topbar">
-    <a class="brand-block" href="index.html" aria-label="Support Desk home">
+    <a class="brand-block" href="index.html">
       <span class="brand-mark">S</span>
-      <span><span class="eyebrow">Support portal</span><strong>Support Desk</strong></span>
+      <span>
+        <span class="eyebrow">Support portal</span>
+        <strong>Support Desk</strong>
+      </span>
     </a>
-    <a class="button button-secondary" href="tickets.html">Semak tiket</a>
+
+    <a class="button button-secondary" href="ticket.html">
+      Check existing tickets
+    </a>
   </header>
 
   <main class="page-shell">
     <section class="hero-card">
       <div>
         <span class="eyebrow">Customer support</span>
-        <h1>Bagaimana kami boleh membantu?</h1>
-        <p>Hantar permintaan anda dan pasukan sokongan akan memberi kemas kini melalui portal tiket.</p>
+        <h1>How can we help?</h1>
+        <p>
+          Submit a new support request and track updates through the ticket portal.
+        </p>
       </div>
-      <div class="hero-badges"><span>● Online</span><span>Respons direkodkan</span></div>
     </section>
 
     <section class="main-grid">
-      <form id="support-form" class="card form-card" novalidate>
-        <div class="section-heading"><span class="eyebrow">New ticket</span><h2>Maklumat permintaan</h2><p>Medan bertanda * diperlukan.</p></div>
-        <div id="form-message" class="form-message" role="alert" hidden></div>
-        <div class="form-grid">
-          <label><span>Nama *</span><input type="text" name="requester" autocomplete="name" maxlength="100" required placeholder="Nama anda" /></label>
-          <label><span>Email *</span><input type="email" name="email" autocomplete="email" maxlength="160" required placeholder="nama@syarikat.com" /></label>
-          <label><span>Nombor telefon *</span><input type="tel" name="phone" autocomplete="tel" maxlength="40" required placeholder="012-3456789" /></label>
-          <label><span>Syarikat</span><input type="text" name="company" autocomplete="organization" maxlength="150" placeholder="Nama syarikat" /></label>
-          <label><span>Kategori *</span><select name="category" required><option value="">Pilih kategori</option><option>Account access</option><option>Billing</option><option>Technical issue</option><option>Feature request</option><option>Other</option></select></label>
-          <label><span>Keutamaan *</span><select name="priority" required><option value="">Pilih keutamaan</option><option>Low</option><option>Medium</option><option>High</option><option>Urgent</option></select></label>
-          <label class="full-width"><span>Ringkasan masalah *</span><input type="text" name="summary" maxlength="180" required placeholder="Contoh: Tidak boleh login ke portal" /></label>
-          <label class="full-width"><span>Butiran masalah *</span><textarea name="details" rows="7" maxlength="10000" required placeholder="Terangkan masalah, mesej ralat, dan langkah untuk menghasilkannya semula."></textarea></label>
+      <form id="support-form" class="card form-card">
+        <div class="section-heading">
+          <span class="eyebrow">New ticket</span>
+          <h2>Request details</h2>
+          <p>Fields marked with * are required.</p>
         </div>
-        <div class="action-row"><button id="submit-button" class="button button-primary" type="submit">Hantar permintaan</button><a class="button button-secondary" href="tickets.html">Semak tiket sedia ada</a></div>
-        <p class="privacy-note">Jangan masukkan kata laluan, API key, token, atau maklumat sulit dalam tiket.</p>
-      </form>
 
-      <aside class="side-stack">
-        <div class="card info-card"><span class="icon-bubble">✓</span><span class="eyebrow">Cara ia berfungsi</span><h2>Semua kemas kini di satu tempat</h2><ol><li>Isi borang dan hantar tiket.</li><li>Pasukan sokongan menyemak permintaan.</li><li>Semak status dan solution menggunakan email serta nombor telefon anda.</li></ol></div>
-        <div class="card info-card accent-card"><span class="eyebrow">Perlu semak tiket?</span><h2>Terus ke portal tiket</h2><p>Customer hanya boleh melihat tiket yang sepadan dengan maklumat mereka.</p><a class="text-link" href="tickets.html">Buka portal tiket →</a></div>
-      </aside>
+        <div class="form-grid">
+          <label>
+            <span>Name *</span>
+            <input type="text" name="requester" required>
+          </label>
+
+          <label>
+            <span>Email *</span>
+            <input type="email" name="email" required>
+          </label>
+
+          <label>
+            <span>Phone number *</span>
+            <input type="tel" name="phone" required>
+          </label>
+
+          <label>
+            <span>Company</span>
+            <input type="text" name="company">
+          </label>
+
+          <label>
+            <span>Category *</span>
+            <select name="category" required>
+              <option value="">Select a category</option>
+              <option>Account access</option>
+              <option>Billing</option>
+              <option>Technical issue</option>
+              <option>Feature request</option>
+              <option>Other</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Priority *</span>
+            <select name="priority" required>
+              <option value="">Select a priority</option>
+              <option>Low</option>
+              <option>Medium</option>
+              <option>High</option>
+              <option>Urgent</option>
+            </select>
+          </label>
+
+          <label class="full-width">
+            <span>Issue summary *</span>
+            <input type="text" name="summary" required>
+          </label>
+
+          <label class="full-width">
+            <span>Issue details *</span>
+            <textarea name="details" rows="7" required></textarea>
+          </label>
+        </div>
+
+        <div class="action-row">
+          <button class="button button-primary" type="submit">
+            Submit request
+          </button>
+
+          <a class="button button-secondary" href="ticket.html">
+            Check existing tickets
+          </a>
+        </div>
+      </form>
     </section>
   </main>
+
   <script src="app.js"></script>
 </body>
 </html>
