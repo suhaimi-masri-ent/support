@@ -273,7 +273,7 @@ async function lookupCustomer(email, phone) {
   });
 
   const response = await fetch(
-    `${API_URL}ticket/lookup?${query.toString()}`,
+    `${API_URL}?${query.toString()}`,
     {
       method: "GET",
       headers: {
@@ -295,13 +295,16 @@ async function lookupCustomer(email, phone) {
 }
 
 async function lookupEngineer(engineerKey) {
+  const query = new URLSearchParams({
+    engineerKey
+  });
+
   const response = await fetch(
-    `${API_URL}engineer/tickets`,
+    `${API_URL}?${query.toString()}`,
     {
       method: "GET",
       headers: {
-        Accept: "application/json",
-        "X-Engineer-Key": engineerKey
+        Accept: "application/json"
       }
     }
   );
@@ -310,14 +313,12 @@ async function lookupEngineer(engineerKey) {
 
   if (!response.ok) {
     throw new Error(
-      data.message ||
-      "Engineer access failed."
+      data.message || "Engineer access failed."
     );
   }
 
   return data;
 }
-
 if (lookupForm) {
   lookupForm.addEventListener(
     "submit",
