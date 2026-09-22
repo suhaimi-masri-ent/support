@@ -1,4 +1,4 @@
- name: Support request
+name: Support request
 description: Submit a support ticket to the internal support team.
 title: "[Support] "
 labels:
