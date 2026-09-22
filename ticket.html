@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Support Desk - Check Tickets</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support Desk | Check Tickets</title>
+  <meta
+    name="description"
+    content="Check the status of your support tickets."
+  />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="topbar">
-    <a class="brand-block" href="index.html">
+    <a
+      class="brand-block"
+      href="index.html"
+      aria-label="Support Desk home"
+    >
       <span class="brand-mark">S</span>
+
       <span>
         <span class="eyebrow">Support portal</span>
         <strong>Support Desk</strong>
@@ -22,40 +31,123 @@
   </header>
 
   <main class="page-shell">
-    <section class="hero-card">
+    <section class="hero-card compact-hero">
       <div>
         <span class="eyebrow">Ticket portal</span>
+
         <h1>Check your ticket status</h1>
+
         <p>
-          Enter the email address and phone number used when submitting your ticket.
+          Enter the email address and phone number used when you submitted
+          the ticket.
         </p>
+      </div>
+
+      <div class="hero-badges">
+        <span>● Secure lookup</span>
+        <span>Live updates</span>
       </div>
     </section>
 
     <section class="lookup-layout">
-      <form id="lookup-form" class="card lookup-card">
+      <form
+        id="lookup-form"
+        class="card lookup-card"
+        novalidate
+      >
         <div class="section-heading">
           <span class="eyebrow">Customer view</span>
+
           <h2>Find your tickets</h2>
+
+          <p>
+            Both details are required to protect your ticket information.
+          </p>
         </div>
 
-        <label>
-          <span>Email address *</span>
-          <input type="email" name="email" required>
-        </label>
+        <div
+          id="lookup-message"
+          class="form-message"
+          role="alert"
+          hidden
+        ></div>
 
-        <label>
-          <span>Phone number *</span>
-          <input type="tel" name="phone" required>
-        </label>
+        <div class="form-grid">
+          <label class="full-width">
+            <span>Email address *</span>
 
-        <button class="button button-primary" type="submit">
+            <input
+              type="email"
+              name="email"
+              autocomplete="email"
+              required
+              placeholder="name@company.com"
+            />
+          </label>
+
+          <label class="full-width">
+            <span>Phone number *</span>
+
+            <input
+              type="tel"
+              name="phone"
+              autocomplete="tel"
+              required
+              placeholder="+1 555 123 4567"
+            />
+          </label>
+        </div>
+
+        <button
+          class="button button-primary"
+          type="submit"
+        >
           Check ticket status
         </button>
       </form>
 
-      <section id="results" class="results" aria-live="polite"></section>
+      <div class="card engineer-card">
+        <div class="engineer-heading">
+          <span class="lock-icon">⌘</span>
+
+          <div>
+            <span class="eyebrow">Team access</span>
+            <h2>Engineer view</h2>
+          </div>
+        </div>
+
+        <p>
+          Authorized support engineers can view all tickets with
+          their access key.
+        </p>
+
+        <form id="engineer-form" novalidate>
+          <label>
+            <span>Engineer access key *</span>
+
+            <input
+              type="password"
+              name="engineerKey"
+              autocomplete="off"
+              required
+            />
+          </label>
+
+          <button
+            class="button button-secondary"
+            type="submit"
+          >
+            View all tickets
+          </button>
+        </form>
+      </div>
     </section>
+
+    <section
+      id="results"
+      class="results"
+      aria-live="polite"
+    ></section>
   </main>
 
   <script src="tickets.js"></script>
