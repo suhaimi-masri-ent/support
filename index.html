@@ -1,147 +1,343 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Support Desk</title>
-    <meta
-      name="description"
-      content="Internal support portal for reporting technical issues and service requests."
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="topbar">
-      <div class="brand-block">
-        <span class="brand-mark">S</span>
-        <div>
-          <p class="eyebrow">Internal portal</p>
-          <h1>Support Desk</h1>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Support Desk</title>
+
+  <meta
+    name="description"
+    content="Submit and track technical support requests."
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+<header class="topbar">
+
+  <div class="brand-block">
+    <span class="brand-mark">S</span>
+
+    <div>
+      <p class="eyebrow">Support portal</p>
+      <h1>Support Desk</h1>
+    </div>
+  </div>
+
+  <a
+    class="ghost-button"
+    href="https://github.com/suhaimi-masri-ent/support/issues"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    View tickets
+  </a>
+
+</header>
+
+
+<main class="page-layout">
+
+  <section class="hero card">
+
+    <div>
+      <p class="eyebrow">Customer support</p>
+
+      <h2>Submit a support request</h2>
+
+      <p class="lede">
+        Tell us what you need help with. Your request will be submitted
+        directly to our support ticket system.
+      </p>
+    </div>
+
+    <div class="status-pills">
+
+      <span class="pill green">
+        ● Online
+      </span>
+
+      <span class="pill blue">
+        Ticket system
+      </span>
+
+      <span class="pill purple">
+        Secure submission
+      </span>
+
+    </div>
+
+  </section>
+
+
+  <section class="content-grid">
+
+    <form
+      id="support-form"
+      class="card form-card"
+      novalidate
+    >
+
+      <div class="section-header">
+
+        <p class="eyebrow">New ticket</p>
+
+        <h3>Request details</h3>
+
       </div>
-      <a
-        class="ghost-button"
-        href="https://github.com/suhaimi-masri-ent/support/issues"
-        target="_blank"
-        rel="noreferrer"
-      >
-        View issues
-      </a>
-    </header>
 
-    <main class="page-layout">
-      <section class="hero card">
-        <div>
-          <p class="eyebrow">Operations</p>
-          <h2>Submit a support request</h2>
-          <p class="lede">
-            Report technical issues, access problems, billing concerns, or product requests using the GitHub issue tracker.
-          </p>
-        </div>
-        <div class="status-pills">
-          <span class="pill green">Live</span>
-          <span class="pill blue">GitHub Issues</span>
-          <span class="pill purple">Public portal</span>
-        </div>
-      </section>
 
-      <section class="content-grid">
-        <form id="support-form" class="card form-card">
-          <div class="section-header">
-            <p class="eyebrow">New ticket</p>
-            <h3>Request details</h3>
-          </div>
+      <div
+        id="form-message"
+        class="form-message"
+        role="alert"
+        hidden
+      ></div>
 
-          <div class="field-grid">
-            <label>
-              <span>Requester name</span>
-              <input type="text" name="requester" placeholder="Jane Smith" required />
-            </label>
 
-            <label>
-              <span>Email</span>
-              <input type="email" name="email" placeholder="jane@company.com" required />
-            </label>
+      <div class="field-grid">
 
-            <label>
-              <span>Company</span>
-              <input type="text" name="company" placeholder="Northwind Co" />
-            </label>
+        <label>
+          <span>Requester name *</span>
 
-            <label>
-              <span>Category</span>
-              <select name="category" required>
-                <option value="">Select a category</option>
-                <option>Account access</option>
-                <option>Billing</option>
-                <option>Technical issue</option>
-                <option>Feature request</option>
-                <option>Other</option>
-              </select>
-            </label>
+          <input
+            type="text"
+            name="requester"
+            autocomplete="name"
+            placeholder="Jane Smith"
+            maxlength="100"
+            required
+          />
+        </label>
 
-            <label>
-              <span>Priority</span>
-              <select name="priority" required>
-                <option value="">Select a priority</option>
-                <option>Low</option>
-                <option>Medium</option>
-                <option>High</option>
-                <option>Urgent</option>
-              </select>
-            </label>
 
-            <label class="full-width">
-              <span>Summary</span>
-              <input type="text" name="summary" placeholder="Password reset loop on admin portal" required />
-            </label>
+        <label>
+          <span>Email *</span>
 
-            <label class="full-width">
-              <span>Problem details</span>
-              <textarea name="details" rows="6" placeholder="Describe the issue, impact, and any steps to reproduce." required></textarea>
-            </label>
-          </div>
+          <input
+            type="email"
+            name="email"
+            autocomplete="email"
+            placeholder="jane@company.com"
+            maxlength="160"
+            required
+          />
+        </label>
 
-          <div class="button-row">
-            <button type="submit" class="primary-button">
-              Continue to GitHub ticket form
-            </button>
-            <a
-              class="secondary-button"
-              href="https://github.com/suhaimi-masri-ent/support/issues/new?template=support-request.yml"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Open issue form
-            </a>
-          </div>
-        </form>
 
-        <aside class="sidebar">
-          <div class="card mini-card">
-            <p class="eyebrow">Available</p>
-            <h3>Support channels</h3>
-            <ul>
-              <li>GitHub Issues for ticket tracking</li>
-              <li>Labels for priority and status</li>
-              <li>Comments for internal updates</li>
-            </ul>
-          </div>
+        <label>
+          <span>Company</span>
 
-          <div class="card mini-card">
-            <p class="eyebrow">Workflow</p>
-            <h3>How it works</h3>
-            <ol>
-              <li>Submit a ticket request.</li>
-              <li>New issue is created in GitHub.</li>
-              <li>Support team responds in comments.</li>
-              <li>Close when resolved.</li>
-            </ol>
-          </div>
-        </aside>
-      </section>
-    </main>
+          <input
+            type="text"
+            name="company"
+            autocomplete="organization"
+            placeholder="Northwind Co"
+            maxlength="150"
+          />
+        </label>
 
-    <script src="app.js"></script>
-  </body>
-</html> 
+
+        <label>
+          <span>Category *</span>
+
+          <select name="category" required>
+
+            <option value="">
+              Select a category
+            </option>
+
+            <option value="Account access">
+              Account access
+            </option>
+
+            <option value="Billing">
+              Billing
+            </option>
+
+            <option value="Technical issue">
+              Technical issue
+            </option>
+
+            <option value="Feature request">
+              Feature request
+            </option>
+
+            <option value="Other">
+              Other
+            </option>
+
+          </select>
+
+        </label>
+
+
+        <label>
+          <span>Priority *</span>
+
+          <select name="priority" required>
+
+            <option value="">
+              Select a priority
+            </option>
+
+            <option value="Low">
+              Low
+            </option>
+
+            <option value="Medium">
+              Medium
+            </option>
+
+            <option value="High">
+              High
+            </option>
+
+            <option value="Urgent">
+              Urgent
+            </option>
+
+          </select>
+
+        </label>
+
+
+        <label class="full-width">
+
+          <span>Summary *</span>
+
+          <input
+            type="text"
+            name="summary"
+            placeholder="Password reset loop on admin portal"
+            maxlength="180"
+            required
+          />
+
+        </label>
+
+
+        <label class="full-width">
+
+          <span>Problem details *</span>
+
+          <textarea
+            name="details"
+            rows="7"
+            maxlength="10000"
+            placeholder="Describe the issue, impact, error message, and steps to reproduce."
+            required
+          ></textarea>
+
+        </label>
+
+      </div>
+
+
+      <div class="button-row">
+
+        <button
+          type="submit"
+          id="submit-button"
+          class="primary-button"
+        >
+          Submit support request
+        </button>
+
+        <a
+          class="secondary-button"
+          href="https://github.com/suhaimi-masri-ent/support/issues"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View existing tickets
+        </a>
+
+      </div>
+
+
+      <p class="privacy-note">
+        Please do not include passwords, API keys, tokens, or other
+        confidential credentials in your request.
+      </p>
+
+    </form>
+
+
+    <aside class="sidebar">
+
+      <div class="card mini-card">
+
+        <p class="eyebrow">
+          Support channels
+        </p>
+
+        <h3>How tickets work</h3>
+
+        <ul>
+
+          <li>
+            Submit the request using this form.
+          </li>
+
+          <li>
+            A GitHub support ticket is created automatically.
+          </li>
+
+          <li>
+            The support team can respond and update the ticket.
+          </li>
+
+          <li>
+            The ticket is closed when resolved.
+          </li>
+
+        </ul>
+
+      </div>
+
+
+      <div class="card mini-card">
+
+        <p class="eyebrow">
+          Before submitting
+        </p>
+
+        <h3>Useful information</h3>
+
+        <ul>
+
+          <li>
+            Describe what happened.
+          </li>
+
+          <li>
+            Include the affected service.
+          </li>
+
+          <li>
+            Include error messages where possible.
+          </li>
+
+          <li>
+            Never include passwords or secret keys.
+          </li>
+
+        </ul>
+
+      </div>
+
+    </aside>
+
+  </section>
+
+</main>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
