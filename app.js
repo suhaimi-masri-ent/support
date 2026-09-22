@@ -6,7 +6,7 @@ const messageBox = document.getElementById("form-message");
  * IMPORTANT:
  * Replace this URL after deploying the Cloudflare Worker.
  */
-const API_URL = "https://suhaimi-support-api.bitsuhami.workers.dev";
+const API_URL = "https://suhaimi-support-api.bitsuhami.workers.dev/";
 
 
 function showMessage(message, type) {
