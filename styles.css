@@ -306,3 +306,16 @@ textarea:focus {
   font-size: 0.78rem;
   line-height: 1.5;
 }
+
+.view-ticket-button {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 16px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.view-ticket-button:hover {
+  text-decoration: none;
+}
