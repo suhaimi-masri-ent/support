@@ -109,12 +109,20 @@ function renderTickets(tickets, engineer = false) {
 
     const category =
       ticket.category ||
+      ticket.category_name ||
+      ticket.categoryName ||
+      ticket.issue_category ||
+      ticket.issueCategory ||
       "—";
-
+    
     const priority =
       ticket.priority ||
+      ticket.priority_name ||
+      ticket.priorityName ||
+      ticket.issue_priority ||
+      ticket.issuePriority ||
       "—";
-
+    
     const solution =
       ticket.solution ||
       ticket.details ||
