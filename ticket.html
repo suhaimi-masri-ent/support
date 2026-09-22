@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support Desk - Check Tickets</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand-block" href="index.html">
+      <span class="brand-mark">S</span>
+      <span>
+        <span class="eyebrow">Support portal</span>
+        <strong>Support Desk</strong>
+      </span>
+    </a>
+
+    <a class="button button-secondary" href="index.html">
+      New ticket
+    </a>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero-card">
+      <div>
+        <span class="eyebrow">Ticket portal</span>
+        <h1>Check your ticket status</h1>
+        <p>
+          Enter the email address and phone number used when submitting your ticket.
+        </p>
+      </div>
+    </section>
+
+    <section class="lookup-layout">
+      <form id="lookup-form" class="card lookup-card">
+        <div class="section-heading">
+          <span class="eyebrow">Customer view</span>
+          <h2>Find your tickets</h2>
+        </div>
+
+        <label>
+          <span>Email address *</span>
+          <input type="email" name="email" required>
+        </label>
+
+        <label>
+          <span>Phone number *</span>
+          <input type="tel" name="phone" required>
+        </label>
+
+        <button class="button button-primary" type="submit">
+          Check ticket status
+        </button>
+      </form>
+
+      <section id="results" class="results" aria-live="polite"></section>
+    </section>
+  </main>
+
+  <script src="tickets.js"></script>
+</body>
+</html>
