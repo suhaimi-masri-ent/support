@@ -134,11 +134,21 @@ async function listTickets(request, env, origin) {
       state: issue.state,
       created_at: issue.created_at,
       updated_at: issue.updated_at,
+    
+      requester:
+        issueField(issue.body, "Name") ||
+        issueField(issue.body, "Requester"),
+    
       email: issueField(issue.body, "Email"),
       phone: issueField(issue.body, "Phone"),
+      company: issueField(issue.body, "Company"),
+    
+      category: issueField(issue.body, "Category"),
+      priority: issueField(issue.body, "Priority"),
+    
+      issue_url: issue.html_url,
       solution: parseSolution(issue.body)
     }));
-
   return json({ tickets }, 200, origin);
 }
 
